@@ -1,28 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const {getAccounts, createANewaccount,
+    deleteAccount,updatesAnAccount,
+    getAccount} = require("./controllers"); 
 
-//مادري اي functions يقصدون حطيت هذا
+router.get("/",  getAccounts);
+router.get('/:username',  getAccount);
+router.post("/",  createANewaccount);
+router.delete("/:accountId",  deleteAccount);
+router.put("/:accountId",  updatesAnAccount);
 
-const cakeRoutes = require("./api/cakes/routes");
-
-// router.use("/api/cakes", cakeRoutes);
-// const cakes = require("../cakeData");
-
-// router.get("/", (req, res) => {
-//   res.json(cakes);
-// });
-
-// router.get("/:cakeId", (req, res) => {
-//   const { cakeId } = req.params;
-//   const cake = cakes.find((_cake) => _cake.id === +cakeId);
-//   res.json(cake);
-// })
-// module.exports = router;
-
-const { cakeList, cakeDetail } = require("./controllers");
-
-router.get("/", cakeList);
-
-router.get("/:cakeId", cakeDetail);;
+module.exports = router;
 
 
